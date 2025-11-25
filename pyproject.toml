@@ -15,6 +15,7 @@ dependencies = [
     "einops==0.8.0",
     "fastapi==0.115.12",
     "gradio==5.33.0",
+    "hf-xet>=1.2.0",
     "huggingface-hub==0.30.2",
     "imageio==2.36.0",
     "ninja==1.11.1.1",
