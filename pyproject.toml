@@ -70,3 +70,4 @@ environments = [
 
 [tool.uv.extra-build-dependencies]
 deepspeed = ["torch", "py-cpuinfo"]
+file = ["torch"]
