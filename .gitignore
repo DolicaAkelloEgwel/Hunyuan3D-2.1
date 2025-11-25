@@ -184,3 +184,4 @@ white_mesh_remesh.obj
 hy3dpaint/ckpt/
 
 save_dir/*
+hy3dpaint/DifferentiableRenderer/mesh_inpaint_processor
