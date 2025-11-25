@@ -1,3 +1,6 @@
+# install python
+sudo apt install python3.10 python3.10-venv python3.10-distutils python3.10-dev
+
 # install cuda 12.6 for WSL
 wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
 sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
@@ -7,24 +10,16 @@ sudo cp /var/cuda-repo-wsl-ubuntu-12-6-local/cuda-*-keyring.gpg /usr/share/keyri
 sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-6
 
-# install python3-config
-sudo apt-get install -y python3-dev
-
 # set cuda path
 export CUDA_HOME=/usr/local/cuda
 export PATH=$CUDA_HOME/bin:$PATH
 
-
-# install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source $HOME/.local/bin/env
-
-# sync
-uv sync
+# create venv
+python3 -m .venv
 
 # install requirements
 cd hy3dpaint/custom_rasterizer 
-uv pip install -e . --no-build-isolation
+pip install -e . --no-build-isolation
 
 # change dir
 cd ../../hy3dpaint/DifferentiableRenderer
