@@ -1,0 +1,35 @@
+# install python
+sudo apt install -y python3.10-venv python3.10-distutils python3.10-dev build-essential cmake
+
+# install cuda 12.4 for WSL
+wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
+sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-wsl-ubuntu-12-4-local_12.4.0-1_amd64.deb
+sudo dpkg -i cuda-repo-wsl-ubuntu-12-4-local_12.4.0-1_amd64.deb
+sudo cp /var/cuda-repo-wsl-ubuntu-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get updatesudo apt-get -y install cuda-toolkit-12-4
+
+# set cuda path
+export CUDA_HOME=/usr/local/cuda
+export PATH=$CUDA_HOME/bin:$PATH
+
+# create and activate venv
+python3.10 -m venv venv310
+source venv310/bin/activate
+
+# pip stuff
+pip install --upgrade pip setuptools wheel
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+pip install bpy==4.0 --extra-index-url https://download.blender.org/pypi/
+pip install -r requirements.txt
+
+# other stuff ...?
+cd hy3dpaint/custom_rasterizer
+pip install --no-build-isolation .
+cd ../..
+cd hy3dpaint/DifferentiableRenderer
+bash compile_mesh_painter.sh
+cd ../..
+
+# get a model file
+wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -P hy3dpaint/ckpt
