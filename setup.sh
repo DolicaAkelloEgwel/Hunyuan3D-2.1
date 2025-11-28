@@ -1,5 +1,24 @@
+set -e
+
+# now I'm not even sure what's happening
+echo "Types: deb" >> /etc/apt/sources.list.d/ubuntu.sources
+echo "URIs: http://old-releases.ubuntu.com/ubuntu/" >> /etc/apt/sources.list.d/ubuntu.sources
+echo "Suites: lunar" >> /etc/apt/sources.list.d/ubuntu.sources
+echo "Components: universe" >> /etc/apt/sources.list.d/ubuntu.sources
+echo "Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" >> /etc/apt/sources.list.d/ubuntu.sources
+
+sudo apt update
+sudo apt install software-properties-common -y
+
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+
 # install python
-sudo apt install -y python3.10-venv python3.10-distutils python3.10-dev build-essential cmake
+sudo apt install -y python3.10 python3.10-venv python3.10-dev build-essential cmake
+
+# install pip
+curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+python3.10 -m pip --version
 
 # install cuda 12.4 for WSL
 wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
@@ -7,15 +26,16 @@ sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
 wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda-repo-wsl-ubuntu-12-4-local_12.4.0-1_amd64.deb
 sudo dpkg -i cuda-repo-wsl-ubuntu-12-4-local_12.4.0-1_amd64.deb
 sudo cp /var/cuda-repo-wsl-ubuntu-12-4-local/cuda-*-keyring.gpg /usr/share/keyrings/
-sudo apt-get updatesudo apt-get -y install cuda-toolkit-12-4
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-4
 
 # set cuda path
 export CUDA_HOME=/usr/local/cuda
 export PATH=$CUDA_HOME/bin:$PATH
 
 # create and activate venv
-python3.10 -m venv venv310
-source venv310/bin/activate
+python3.10 -m venv hunyuan
+. hunyuan/bin/activate
 
 # pip stuff
 pip install --upgrade pip setuptools wheel
