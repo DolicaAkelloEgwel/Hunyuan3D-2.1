@@ -3,8 +3,6 @@ set -e
 # now I'm not even sure what's happening
 sudo bash -c 'cat .source >> /etc/apt/sources.list.d/ubuntu.sources'
 
-exit
-
 sudo apt update
 sudo apt install software-properties-common -y
 
@@ -28,8 +26,9 @@ sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-4
 
 # set cuda path
-export CUDA_HOME=/usr/local/cuda
-export PATH=$CUDA_HOME/bin:$PATH
+echo "CUDA_HOME=/usr/local/cuda" >> .bashrc
+echo "PATH=$CUDA_HOME/bin:$PATH" >> .bashrc
+. ~/.bashrc
 
 # create and activate venv
 python3.10 -m venv hunyuan
