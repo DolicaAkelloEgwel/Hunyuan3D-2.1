@@ -1,11 +1,9 @@
 set -e
 
 # now I'm not even sure what's happening
-echo "Types: deb" >> /etc/apt/sources.list.d/ubuntu.sources
-echo "URIs: http://old-releases.ubuntu.com/ubuntu/" >> /etc/apt/sources.list.d/ubuntu.sources
-echo "Suites: lunar" >> /etc/apt/sources.list.d/ubuntu.sources
-echo "Components: universe" >> /etc/apt/sources.list.d/ubuntu.sources
-echo "Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" >> /etc/apt/sources.list.d/ubuntu.sources
+sudo bash -c 'cat .source >> /etc/apt/sources.list.d/ubuntu.sources'
+
+exit
 
 sudo apt update
 sudo apt install software-properties-common -y
@@ -53,3 +51,6 @@ cd ../..
 
 # get a model file
 wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth -P hy3dpaint/ckpt
+
+# delete the cuda installaer
+rm cuda-repo-wsl-ubuntu-12-4-local_12.4.0-1_amd64.deb
