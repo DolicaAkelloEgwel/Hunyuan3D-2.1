@@ -186,3 +186,6 @@ hy3dpaint/ckpt/
 save_dir/*
 hy3dpaint/DifferentiableRenderer/mesh_inpaint_processor
 hunyuan/*
+.bashrc
+mr_combined.png
+temp.glb
