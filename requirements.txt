@@ -66,3 +66,6 @@ pythreejs
 torchdiffeq
 deepspeed
 
+# for pkg_resources error
+setuptools==81.0.0
+
