@@ -1,5 +1,12 @@
 set -e
 
+CUDA_VERSION="$1";
+
+CUDA_MAJOR="${CUDA_VERSION%%.*}"
+CUDA_MINOR="${CUDA_VERSION##*.}" 
+
+exit 1
+
 # now I'm not even sure what's happening
 sudo bash -c 'cat .source >> /etc/apt/sources.list.d/ubuntu.sources'
 
