@@ -9,8 +9,8 @@ echo $CUDA_MAJOR
 echo $CUDA_MINOR
 
 case "$CUDA_VERSION" in
-  12.4) CUDA_PATCH="0" ;;
-  13.2) CUDA_PATCH="1" ;;
+  "12.4") CUDA_PATCH="0" ;;
+  "13.2") CUDA_PATCH="1" ;;
   *)
     echo "Unknown full version for $CUDA_VERSION"
     exit 1
