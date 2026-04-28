@@ -59,7 +59,7 @@ pip install --upgrade pip setuptools wheel
 if [[ "$CUDA_VERSION" = "12.4" ]]; then
   pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu${CUDA_MAJOR}${CUDA_MINOR}
 else
-  pip install torch torchvision
+  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu${CUDA_MAJOR}${CUDA_MINOR}
 fi
 
 pip install bpy==4.0 --extra-index-url https://download.blender.org/pypi/
