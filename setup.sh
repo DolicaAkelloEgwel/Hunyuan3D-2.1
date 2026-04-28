@@ -5,6 +5,9 @@ CUDA_VERSION="$1";
 CUDA_MAJOR="${CUDA_VERSION%%.*}"
 CUDA_MINOR="${CUDA_VERSION##*.}" 
 
+echo $CUDA_MAJOR
+echo $CUDA_MINOR
+
 exit 1
 
 # now I'm not even sure what's happening
